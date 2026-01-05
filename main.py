@@ -2,6 +2,11 @@ from flask import Flask, render_template, jsonify, request
 import PyPDF2
 import json
 import re
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Gemini SDK
 try:
@@ -14,7 +19,7 @@ except ImportError:
 app = Flask(__name__)
 
 # ================== CONFIGURATION ==================
-API_KEY = "AIzaSyDaYbQoMqGqmbv1bWTBQeCOHJvrgbSvDX8"
+API_KEY = os.getenv("GEMINI_API_KEY")
 client = None
 
 if GEMINI_AVAILABLE:
